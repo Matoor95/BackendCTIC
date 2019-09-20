@@ -1,0 +1,28 @@
+[
+    {
+      "group": "admin",
+      "permissions": [
+        {
+          "resource": "*",
+          "methods": "*",
+          "action": "allow"
+        }
+      ]
+    },
+    {
+      "group": "visiteur",
+      "permissions": [
+        {
+          "resource": "visiteur/",
+          "methods": ["POST", "PUT"],
+          "action": "deny"
+        },
+        {
+          "resource": "visteur/*",
+          "methods": ["GET"],
+          "action": "allow"
+        }
+      ]
+    }
+  ]
+  
