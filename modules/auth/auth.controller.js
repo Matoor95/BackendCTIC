@@ -1,5 +1,7 @@
 (function () {
   const Users = require("../users/users.model").userModel;
+  const Edition = require("../edition/edition.model").editionModel;
+  
   const bcrypt = require("bcrypt");
   const saltRounds = 10,
     jwt = require("jsonwebtoken");
@@ -16,44 +18,23 @@
         }
         return res.status(404).json({
           status: "error",
-          message: "nom utiisateeur ou password incorrecte"
+          message: "nom utilisateur ou password incorrecte"
         })
       },
-      login: async (req, res) => {
-        let user = await Users.findOne({ username: req.body.username });
-        if (!user)
-          return res.json({
-            status: "error",
-            body: "Nom d'utilisateur incorrecte"
-          });
-        bcrypt
-          .compare(req.body.password, user.password)
-          .then(function (correct) {
-            if (correct) {
-              let reponse = {
-                _id: user._id,
-                username: user.username,
-              };
-              let token = jwt.sign(
-                {
-                  data: reponse
-                },
-                "secret",
-                { expiresIn: 60 * 60 }
-              );
-              reponse.token = token;
-              return res.json({
-                status: "success",
-                body: reponse
-              });
-            } else {
-              return res.json({
-                status: "error",
-                body: "Mot de passe incorrecte"
-              });
-            }
+      
+      addEdition: async (req, res) => {
+        let edition = new Edition(req.body);
+        edition.save()
+          .then(edition => {
+            res.status(200).json({'edition': 'edition in added successfully'});
+          })
+          .catch(err => {
+          res.status(400).send("unable to save to database");
           });
       },
+    
+
+      
     };
   };
 })();

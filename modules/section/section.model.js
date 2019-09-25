@@ -3,15 +3,11 @@
     var Schema = mongoose.Schema;
 
     var sectionSchema = new Schema({
-      titre: { type: date, required: true },
-      numero: { type: String, required: true },
-      tab: { type: Array, required: true },
+      titre: { type: String, required: true },
+      description: { type: String, required: true }
     });
-
-    
-    
     module.exports = {
-      userModel: mongoose.model("Section", sectionSchema)
+      sectionModel: mongoose.model("Section", sectionSchema)
     };
   })();
   
