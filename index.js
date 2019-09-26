@@ -69,6 +69,8 @@ function initApp() {
    * CHARGEMENT DES ROUTES D'AUTHENTIFICATION
    */
   require("./modules/auth/auth.routes")(app);
+  require("./modules/edition/edition.routes")(app);
+
 
   /******
    * VERIFIER LA CONNECTIVITE DU USER

@@ -1,6 +1,5 @@
 (function () {
   const Users = require("../users/users.model").userModel;
-  const Edition = require("../edition/edition.model").editionModel;
   
   const bcrypt = require("bcrypt");
   const saltRounds = 10,
@@ -22,17 +21,7 @@
         })
       },
       
-      addEdition: async (req, res) => {
-        let edition = new Edition(req.body);
-        edition.save()
-          .then(edition => {
-            res.status(200).json({'edition': 'edition in added successfully'});
-          })
-          .catch(err => {
-          res.status(400).send("unable to save to database");
-          });
-      },
-    
+     
 
       
     };
