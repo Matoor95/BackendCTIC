@@ -11,7 +11,7 @@
   var editionSchema = new Schema({
     date: { type: Date, required: true },
     numero: { type: String, required: true },
-      sections: { type: [sectionSchema], default: []}
+      sections: { type: String}
   });
   
   
