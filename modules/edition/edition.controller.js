@@ -19,14 +19,18 @@
         },
 
         create: async (req, res) => {
-            upload = multer({ dest: "dist/attachments" }).single("image");
+            upload = multer({ dest: "dist/attachments" }).array("images");
             upload(req, res, function(error) {
-              if (error || !req.file) {
+              if (error || !req.files) {
                 return res.status(500).json({
                   message: "Erreur lors de l'enregistrement du fichier",
                   error: error
                 });
               } else {
+                
+                  for(let i=0;i<req.files.length;i++){
+                    // req.file => req.files[i]
+                  }
                 oldPath = req.file.path;
                 extension = req.file.originalname.split(".");
                 nbItems = extension.length;
@@ -40,24 +44,24 @@
                       status: "success",
                       message: reponse
                     });
-                    
-                   
-
-
                 });
               }
             });
         },
                 
         attacheFile: (req, res) => {
-            upload = multer({ dest: "dist/attachments" }).single("image");
+            upload = multer({ dest: "dist/attachments" }).array("images");
+            console.log(req.files)
             upload(req, res, function(error) {
-              if (error || !req.file) {
+              if (error || !req.files) {
                 return res.status(500).json({
                   message: "Erreur lors de l'enregistrement du fichier",
                   error: error
                 });
               } else {
+                for(let i=0;i<req.files.length;i++){
+                  // req.file => req.files[i]
+                }
                 oldPath = req.file.path;
                 extension = req.file.originalname.split(".");
                 nbItems = extension.length;
