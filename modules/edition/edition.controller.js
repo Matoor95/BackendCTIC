@@ -8,7 +8,6 @@
 
 
       addEdition: async (req, res) => {
-        console.log("body ", req.body);
         let edition = new Edition(req.body);
         edition.save()
           .then(edition => {

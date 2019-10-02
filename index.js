@@ -61,6 +61,7 @@ function initApp() {
       "token, Content-Type, X-Requested-With"
     );
     res.setHeader("Access-Control-Allow-Credentials", true);
+    
     if (req.method == "OPTIONS") return res.sendStatus(200);
     next();
   });
@@ -68,8 +69,7 @@ function initApp() {
   /**
    * CHARGEMENT DES ROUTES D'AUTHENTIFICATION
    */
-  require("./modules/auth/auth.routes")(app);
-  require("./modules/edition/edition.routes")(app);
+  
 
 
   /******
@@ -102,6 +102,8 @@ function initApp() {
   /********** RETOURE UNE ERREUR 404 SI AUCUNE ROUTE NE
    * CORRESPOND A LA DEMANDE
    */
+  require("./modules/auth/auth.routes")(app);
+  require("./modules/edition/edition.routes")(app);
   app.use(function(req, res) {
     res.status(404).send("OUPS PAGE INTROUVABLE");
   });
